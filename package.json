@@ -1,0 +1,26 @@
+{
+  "name": "TaigaIO-Events",
+  "version": "0.0.1",
+  "description": "Taiga project management system (events)",
+  "main": "index.js",
+  "keywords": [
+    "Taiga",
+    "Agile",
+    "Project Management",
+    "Github"
+  ],
+  "author": "Kaleidos OpenSource SL",
+  "licenses": [
+    {
+      "type": "AGPL-3.0",
+      "url": "https://github.com/taigaio/taiga-front/blob/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-cache": "^0.2.4",
+    "gulp-coffeelint": "^0.4.0",
+    "gulp-nodemon": "^1.0.5",
+    "gulp-plumber": "^0.6.6"
+  }
+}

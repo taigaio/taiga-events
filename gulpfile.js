@@ -6,7 +6,7 @@ var cache = require("gulp-cache");
 
 gulp.task('lint', function () {
     gulp.src(['**/*.coffee', '!node_modules/**/*'])
-        .pipe(cache(coffeelint(), {
+        .pipe(cache(coffeelint('coffeelint.json'), {
             success: function (file) {
                 return file.coffeelint.success;
             },

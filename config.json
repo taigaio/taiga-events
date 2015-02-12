@@ -1,0 +1,11 @@
+{
+    "url": "amqp://guest:guest@localhost:5672",
+    "exchange": {
+        "name": "events",
+        "options": {}
+    },
+    "queue": {
+        "name": "EventsPushBackend",
+        "options": {}
+    }
+}

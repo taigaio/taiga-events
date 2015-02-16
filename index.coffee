@@ -7,7 +7,7 @@ clients = require('./clients')
 connection = amqp.createConnection({ url: config.url }, {defaultExchangeName: config.exchange.name})
 
 WebSocketServer = require('ws').Server
-wss = new WebSocketServer({ port: 3000 })
+wss = new WebSocketServer(config.webSocketServer)
 
 connection.on 'ready',  () ->
     connection.queue config.queue.name, config.queue.options, (q) ->
@@ -30,7 +30,7 @@ connection.on 'ready',  () ->
                 clientMsgStr = JSON.stringify(clientMsg)
 
                 subscriptions.forEach (client) ->
-                    #excude sender client
+                    #exclude sender client
                     if !senderClient || client.id != senderClient.id
                         client.ws.send clientMsgStr
 

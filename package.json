@@ -24,7 +24,9 @@
     "gulp-plumber": "^0.6.6"
   },
   "dependencies": {
-    "amqp": "^0.2.3",
+    "amqplib": "^0.3.1",
+    "base64-url": "^1.2.1",
+    "bluebird": "^2.9.10",
     "node-uuid": "^1.4.2",
     "ws": "^0.7.1"
   }

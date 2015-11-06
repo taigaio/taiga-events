@@ -1,5 +1,6 @@
 queue = require('./rabbit')
 
+
 class Subscription
     constructor: (@client_id, @auth, @ws, @routing_key) ->
 
@@ -16,31 +17,32 @@ class Subscription
         @ws.send clientMsgStr
 
     start: () ->
-        queue.subscribe(@client_id, @routing_key, @handleMessage.bind(@))
+        queue.subscribe(@client_id, @routing_key, @.handleMessage.bind(@))
 
     stop: () ->
         queue.unsubscribe(@client_id, @routing_key)
 
+
 class SubscriptionManager
     constructor: (@client_id, @auth, @ws) ->
-        @subscriptions = {}
+        @.subscriptions = {}
 
     add: (routing_key) ->
-        if !@subscriptions[routing_key]
-            @subscriptions[routing_key] = {}
+        if !@.subscriptions[routing_key]
+            @.subscriptions[routing_key] = {}
         else
-            @subscriptions[routing_key].stop()
+            @.subscriptions[routing_key].stop()
 
-        @subscriptions[routing_key] = new Subscription(@client_id, @auth, @ws, routing_key)
-        @subscriptions[routing_key].start()
+        @.subscriptions[routing_key] = new Subscription(@client_id, @auth, @ws, routing_key)
+        @.subscriptions[routing_key].start()
 
     remove: (routing_key) ->
-        @subscriptions[routing_key].stop()
+        @.subscriptions[routing_key].stop()
 
-        delete @subscriptions[routing_key]
+        delete @.subscriptions[routing_key]
 
     destroy: () ->
-        @subscriptions = {}
+        @.subscriptions = {}
         queue.destroy(@client_id)
 
 exports.SubscriptionManager = SubscriptionManager

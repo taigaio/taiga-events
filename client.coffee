@@ -17,7 +17,9 @@ class Client
     handleMessage: (message) ->
         msg = JSON.parse(message)
 
-        if msg.cmd == 'auth'
+        if msg.cmd == 'ping'
+            @.sendPong()
+        else if msg.cmd == 'auth'
             @.auth(msg.data)
         else if msg.cmd == 'subscribe'
             @.addSubscription(msg.routing_key)
@@ -34,13 +36,16 @@ class Client
                 @.subscriptionManager = new SubscriptionManager(@.id, @.auth, @ws)
             @.subscriptionManager.add(routing_key)
 
-    close: () ->
-        if @.subscriptionManager
-            @.subscriptionManager.destroy()
-
     removeSubscription: (routing_key) ->
         if @.subscriptionManager
             @.subscriptionManager.remove(routing_key)
+
+    sendPong: ->
+        @ws.send(JSON.stringify({cmd: "pong"}))
+
+    close: () ->
+        if @.subscriptionManager
+            @.subscriptionManager.destroy()
 
 
 exports.createClient = (ws) ->

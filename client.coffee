@@ -20,13 +20,13 @@ class Client
         if msg.cmd == 'ping'
             @.sendPong()
         else if msg.cmd == 'auth'
-            @.auth(msg.data)
+            @.authUser(msg.data)
         else if msg.cmd == 'subscribe'
             @.addSubscription(msg.routing_key)
         else if msg.cmd == 'unsubscribe'
             @.removeSubscription(msg.routing_key)
 
-    auth: (auth) ->
+    authUser: (auth) ->
         if auth.token and auth.sessionId and signing.verify(auth.token)
             @.auth = auth
 

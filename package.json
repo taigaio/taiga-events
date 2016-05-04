@@ -23,7 +23,7 @@
     "gulp-plumber": "^1.0.1"
   },
   "dependencies": {
-    "amqplib": "^0.4.0",
+    "amqplib": "^0.4.1",
     "base64-url": "^1.2.1",
     "bluebird": "^2.9.10",
     "node-uuid": "^1.4.2",

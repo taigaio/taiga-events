@@ -39,6 +39,7 @@ getConnection = do ->
 # Return the user channel
 channels = do ->
     chs = {}
+    pendingChannels = {}
 
     removeClient = (client_id) ->
         get(client_id).then (channel) ->
@@ -47,7 +48,12 @@ channels = do ->
             delete chs[client_id]
 
     get = (client_id) ->
-        return new Promise (resolve, reject) ->
+        if pendingChannels[client_id]
+            return pendingChannels[client_id]
+
+        pendingChannels[client_id] = new Promise (resolve, reject) ->
+            delete pendingChannels[client_id]
+
             if !chs[client_id]
                 getConnection()
                     .then (connection) -> connection.createChannel()
@@ -56,6 +62,8 @@ channels = do ->
                         return resolve(chs[client_id])
             else
                 resolve(chs[client_id])
+
+        return pendingChannels[client_id]
 
     return {
         removeClient: removeClient

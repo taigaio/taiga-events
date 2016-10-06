@@ -37,9 +37,10 @@ class SubscriptionManager
         @.subscriptions[routing_key].start()
 
     remove: (routing_key) ->
-        @.subscriptions[routing_key].stop()
+        if @.subscriptions[routing_key] && @.subscriptions[routing_key].stop
+            @.subscriptions[routing_key].stop()
 
-        delete @.subscriptions[routing_key]
+            delete @.subscriptions[routing_key]
 
     destroy: () ->
         @.subscriptions = {}

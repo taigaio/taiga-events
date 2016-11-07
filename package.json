@@ -12,8 +12,8 @@
   "author": "Kaleidos OpenSource SL",
   "license": "AGPL-3.0",
   "repository": {
-    "type":"git",
-    "url":"https://github.com/taigaio/taiga-events.git"
+    "type": "git",
+    "url": "https://github.com/taigaio/taiga-events.git"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
@@ -27,6 +27,6 @@
     "base64-url": "^1.2.1",
     "bluebird": "^2.9.10",
     "node-uuid": "^1.4.2",
-    "ws": "^0.8.0"
+    "ws": "^1.1.1"
   }
 }

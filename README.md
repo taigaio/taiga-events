@@ -9,6 +9,8 @@ The Taiga websocket server.
 Installation
 ------------
 
+> *NOTE:* You should use node >= 6.0 
+
 Install the RabbitMQ service.
 
 ```bash

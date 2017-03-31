@@ -12,6 +12,11 @@ rsplit = (token, sep, maxsplit) ->
 
     return split
 
+exports.getUserId = (token) ->
+    value = token.split(':')[0]
+    value = JSON.parse(base64url.decode(value))
+    return value.user_authentication_id
+
 exports.verify = (token) ->
     [value, sig] = rsplit(token, ':', 1)
 

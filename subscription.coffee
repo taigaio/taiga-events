@@ -14,7 +14,10 @@ class Subscription
         clientMsg.routing_key = msg.fields.routingKey
         clientMsgStr = JSON.stringify(clientMsg)
 
-        @ws.send clientMsgStr
+        try
+            @ws.send clientMsgStr
+        catch e
+            console.error("Error: ", e)
 
     start: () ->
         queue.subscribe(@client_id, @routing_key, @.handleMessage.bind(@))

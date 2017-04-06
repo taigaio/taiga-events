@@ -44,7 +44,10 @@ class Client
             @.subscriptionManager.remove(routing_key)
 
     sendPong: ->
-        @ws.send(JSON.stringify({cmd: "pong"}))
+        try
+            @ws.send(JSON.stringify({cmd: "pong"}))
+        catch e
+            console.error("Error: ", e)
 
     close: () ->
         if @.subscriptionManager

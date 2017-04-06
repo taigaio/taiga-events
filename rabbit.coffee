@@ -105,7 +105,9 @@ subscriptions = do ->
 
     unsubscribe = (client_id, routing_key) ->
         channels.get(client_id).then (channel) ->
-            channel.cancel(subs[client_id][routing_key])
+            consumerTag = subs[client_id][routing_key]
+            if consumerTag != undefined
+                channel.cancel(consumerTag)
 
     removeClient = (client_id) ->
         delete subs[client_id]

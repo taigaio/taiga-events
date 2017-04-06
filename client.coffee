@@ -15,15 +15,18 @@ class Client
         @ws.on 'message', @.handleMessage.bind(@)
 
     handleMessage: (message) ->
-        msg = JSON.parse(message)
+        try
+            msg = JSON.parse(message)
+        catch e
+            return null
 
         if msg.cmd == 'ping'
             @.sendPong()
-        else if msg.cmd == 'auth'
+        else if msg.cmd == 'auth' and msg.data
             @.authUser(msg.data)
-        else if msg.cmd == 'subscribe'
+        else if msg.cmd == 'subscribe' and msg.routing_key
             @.addSubscription(msg.routing_key)
-        else if msg.cmd == 'unsubscribe'
+        else if msg.cmd == 'unsubscribe' and msg.routing_key
             @.removeSubscription(msg.routing_key)
 
     authUser: (auth) ->

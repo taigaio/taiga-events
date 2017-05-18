@@ -1,6 +1,6 @@
 crypto = require('crypto')
 base64url = require('base64-url')
-config = require('./config')
+config = require('./events-config').config
 
 salt = 'django.core.signing'
 

@@ -40,3 +40,9 @@ Then run the taiga events service
 ```bash
   coffee index.coffee
 ```
+
+You can specify you own config path
+
+```bash
+  coffee index.coffee --config /path/to/config.json
+```

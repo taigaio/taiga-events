@@ -1,6 +1,6 @@
 amqp = require('amqplib')
 Promise = require('bluebird')
-amqpUrl = require('./config').url
+amqpUrl = require('./events-config').config.url
 
 config = {
     "exchange": {

@@ -1,4 +1,10 @@
-config = require('./config')
+eventsConfig = require('./events-config')
+argv = require('minimist')(process.argv.slice(2));
+
+eventsConfig.loadConfigFile(argv.config || './config')
+
+config = eventsConfig.config;
+
 client = require('./client')
 
 WebSocketServer = require('ws').Server

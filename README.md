@@ -1,7 +1,7 @@
 Taiga events
 ============
 
-![Kaleidos Project](http://kaleidos.net/static/img/badge.svg "Kaleidos Project")
+[![Kaleidos Project](http://kaleidos.net/static/img/badge.png)](https://github.com/kaleidos "Kaleidos Project")
 [![Managed with Taiga.io](https://img.shields.io/badge/managed%20with-TAIGA.io-709f14.svg)](https://tree.taiga.io/project/taiga/ "Managed with Taiga.io")
 
 The Taiga websocket server.

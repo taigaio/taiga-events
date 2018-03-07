@@ -13,6 +13,13 @@ class Client
 
     handleEvents: () ->
         @ws.on 'message', @.handleMessage.bind(@)
+        @ws.on 'error', @.handleError.bind(@)
+
+    handleError: (error) ->
+        console.log('client_error:', error)
+        req = @ws.upgradeReq
+        request_headers = req.headers
+        console.log('request_headers:', request_headers)
 
     handleMessage: (message) ->
         try

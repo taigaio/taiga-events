@@ -13,6 +13,13 @@ class Client
 
     handleEvents: () ->
         @ws.on 'message', @.handleMessage.bind(@)
+        @ws.on 'error', @.handleError.bind(@)
+
+    handleError: (error) ->
+        req = @ws.upgradeReq
+        headers = req.headers
+        console.log "evt=client_error", "x_forwarded_for=#{headers['x-forwarded-for']}"
+        console.log "Error: ", error
 
     handleMessage: (message) ->
         try

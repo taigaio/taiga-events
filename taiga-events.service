@@ -1,0 +1,20 @@
+### This script is not yet integrated with the Taiga install process, as of 31/08/2016 it is here for manual insertion.
+###
+### (to be put in /etc/systemd/system/ and systemctl enable'd)
+####taiga-events.service:
+
+[Unit]
+ Description=Taiga's Realtime Events Engine
+ Wants=rabbitmq-server.service
+ Requires=rabbitmq-server.service
+
+[Service]
+ User=taiga
+ WorkingDirectory=/home/taiga/taiga-events
+ ExecStart=/usr/local/bin/coffee index.coffee
+ Restart=always
+ StandardOutput=syslog+console
+ StandardError=syslog+console
+
+[Install]
+ WantedBy=taiga.service

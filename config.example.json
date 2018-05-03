@@ -3,5 +3,11 @@
     "secret": "mysecret",
     "webSocketServer": {
         "port": 8888
+    },
+    "loggerOptions": {
+          "level": "debug",
+          "handleExceptions": true,
+          "json": false,
+          "colorize": true
     }
 }

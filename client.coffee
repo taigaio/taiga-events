@@ -8,7 +8,6 @@ clients = {}
 class Client
     constructor: (@ws) ->
         @.id = uuid.v4()
-
         @.handleEvents()
 
     handleEvents: () ->
@@ -25,7 +24,7 @@ class Client
         try
             msg = JSON.parse(message)
         catch e
-            return null
+            console.error "Error: ", e
 
         if msg.cmd == 'ping'
             @.sendPong()
@@ -58,7 +57,7 @@ class Client
         try
             @ws.send(JSON.stringify({cmd: "pong"}))
         catch e
-            console.error("Error: ", e)
+            console.error "Error: ", e
 
     close: () ->
         if @.subscriptionManager

@@ -1,13 +1,16 @@
+logger = require('./logger').logger
+
+webSocket = require 'ws'
+
 eventsConfig = require('./events-config')
-argv = require('minimist')(process.argv.slice(2));
-
+argv = require('minimist')(process.argv.slice(2))
 eventsConfig.loadConfigFile(argv.config || './config')
+config = eventsConfig.config
 
-config = eventsConfig.config;
+client = require './client'
 
-client = require('./client')
+WebSocketServer = webSocket.Server
 
-WebSocketServer = require('ws').Server
 wss = new WebSocketServer(config.webSocketServer)
 
 wss.on 'connection', (ws) ->

@@ -1,6 +1,7 @@
 uuid = require('node-uuid')
 signing = require('./signing')
 SubscriptionManager = require('./subscription').SubscriptionManager
+logger = require('./logger').logger
 
 clients = {}
 
@@ -17,14 +18,14 @@ class Client
     handleError: (error) ->
         req = @ws.upgradeReq
         headers = req.headers
-        console.log "evt=client_error", "x_forwarded_for=#{headers['x-forwarded-for']}"
-        console.log "Error: ", error
+        logger.error "evt=client_errorx_forwarded_for=%s", headers['x-forwarded-for']
+        logger.error error
 
     handleMessage: (message) ->
         try
             msg = JSON.parse(message)
         catch e
-            console.error "Error: ", e
+            return null
 
         if msg.cmd == 'ping'
             @.sendPong()
@@ -57,7 +58,7 @@ class Client
         try
             @ws.send(JSON.stringify({cmd: "pong"}))
         catch e
-            console.error "Error: ", e
+            logger.error e
 
     close: () ->
         if @.subscriptionManager

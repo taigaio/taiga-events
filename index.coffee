@@ -1,4 +1,5 @@
-winston = require 'winston'
+logger = require('./logger').logger
+
 webSocket = require 'ws'
 
 eventsConfig = require('./events-config')
@@ -9,22 +10,6 @@ config = eventsConfig.config
 client = require './client'
 
 WebSocketServer = webSocket.Server
-
-simplestFormat = winston.format.printf((info) =>
-    "#{info.timestamp} #{info.message}")
-
-logger = winston.createLogger({
-    format: winston.format.combine(
-        winston.format.timestamp({
-            format: 'YYYY-MM-DD HH:mm:ss'
-        }),
-        simplestFormat
-    ),
-    transports: [
-        new winston.transports.Console(config.loggerOptions)
-    ],
-    exitOnError: false,
-});
 
 wss = new WebSocketServer(config.webSocketServer)
 

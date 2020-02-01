@@ -25,7 +25,7 @@ class Client {
    * @return {*}
    */
   handleEvents() {
-    this.ws.on("message", this.handleMessage);
+    this.ws.on("message", this.handleMessage.bind(this));
     return this.ws.on("error", this.handleError);
   }
 

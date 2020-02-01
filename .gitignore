@@ -1,5 +1,7 @@
-*.swp
 node_modules/
-npm-debug.log
-config.json
-dist/
+*.log
+yarn.lock
+package-lock.json
+
+.env
+.idea

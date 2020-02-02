@@ -34,7 +34,7 @@ const getConnection = () => {
   let connection = null;
   return new Promise((resolve, reject) => {
     if (!connection) {
-      return connect(amqpUrl)
+      return connect(`${amqpUrl}?heartbeat=60`)
         .then(conn => {
           connection = conn;
           return resolve(connection);

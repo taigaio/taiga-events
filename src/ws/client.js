@@ -1,4 +1,4 @@
-const uuid = require("node-uuid");
+const { v4 } = require("uuid");
 
 const { SubscriptionManager } = require("../rabbitmq");
 const { logger } = require("../logger");
@@ -16,7 +16,7 @@ class Client {
    */
   constructor(ws) {
     this.ws = ws;
-    this.id = uuid.v4();
+    this.id = v4();
     this.handleEvents();
   }
 

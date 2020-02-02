@@ -16,7 +16,7 @@
   "license": "AGPL-3.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/taigaio/taiga-events.git"
+    "url": "https://github.com/taigaio/taiga-events"
   },
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon ./src/index.js",

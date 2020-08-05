@@ -1,4 +1,5 @@
 # Taiga.io Community CoC (Code of Conduct)
+
 ### Version 0.1
 
 As contributors and maintainers of any Taiga.io project, and in the interest of
@@ -13,13 +14,13 @@ body size, race, ethnicity, age, religion, or nationality.
 
 Examples of unacceptable behavior by participants include:
 
-* The use of sexualized language or imagery
-* Personal attacks
-* Trolling or insulting/derogatory comments
-* Public or private harassment
-* Publishing other's private information, such as physical or electronic
+- The use of sexualized language or imagery
+- Personal attacks
+- Trolling or insulting/derogatory comments
+- Public or private harassment
+- Publishing other's private information, such as physical or electronic
   addresses, without explicit permission
-* Other unethical or unprofessional conduct
+- Other unethical or unprofessional conduct
 
 Project maintainers have the right and responsibility to remove, edit, or
 reject comments, commits, code, wiki edits, issues, and other contributions
@@ -34,7 +35,7 @@ Conduct may be permanently removed from the project team.
 
 This code of conduct applies both within project spaces and in public spaces
 when an individual is representing the project or its community (like our
- mailing list, Google Groups, in Twitter, Facebook, etc.).
+mailing list, Google Groups, in Twitter, Facebook, etc.).
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported by contacting a project maintainer at
@@ -49,4 +50,3 @@ version 1.3.0, available at
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/3/0/
-

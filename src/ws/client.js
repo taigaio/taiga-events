@@ -82,6 +82,7 @@ class Client {
    */
   authUser(auth) {
     if (auth.token && auth.sessionId && verify(auth.token)) {
+      console.log('eee');
       return (this.auth = auth);
     }
   }

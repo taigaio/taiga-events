@@ -1,7 +1,7 @@
 const { createHash, createHmac } = require("crypto");
 const base64url = require("base64-url");
 
-const secret = process.env.APP_SECRET;
+const secret = process.env.SECRET;
 const salt = "django.core.signing";
 
 /**
@@ -36,6 +36,10 @@ const getUserId = token => {
  * @return {boolean}
  */
 const verify = token => {
+  if (!token) {
+    return false;
+  }
+
   const [value, sig] = rsplit(token, ":", 1);
   const shasum = createHash("sha1");
 

@@ -30,27 +30,29 @@ const config = {
  * Return the connection, creates the connection if it does not exist.
  * @return {Promise}
  */
-const getConnection = () => {
+const getConnection = (() => {
   let connection = null;
-  return new Promise((resolve, reject) => {
-    if (!connection) {
-      return connect(`${amqpUrl}?heartbeat=60`)
-        .then(conn => {
-          connection = conn;
-          return resolve(connection);
-        })
-        .catch(e => reject(e));
-    } else {
-      return resolve(connection);
-    }
-  });
-};
+  return () => {
+    return new Promise((resolve, reject) => {
+      if (!connection) {
+        return connect(`${amqpUrl}?heartbeat=60`)
+          .then(conn => {
+            connection = conn;
+            return resolve(connection);
+          })
+          .catch(e => reject(e));
+      } else {
+        return resolve(connection);
+      }
+    });
+  };
+})();
 
 /**
  * Return the user channel
  * @return {{removeClient: (function(*=): PromiseLike<boolean> | Promise<boolean>), get: get}}
  */
-const channels = () => {
+const channels = (() => {
   let chs = {};
   let pendingChannels = {};
 
@@ -98,13 +100,13 @@ const channels = () => {
     removeClient: removeClient,
     get: get
   };
-};
+})();
 
 /**
  * Return a new queue
  * @return {{create: (function(*=, *, *): Promise)}}
  */
-const queues = () => {
+const queues = (() => {
   /**
    * Get exchange
    * @param channel
@@ -137,9 +139,9 @@ const queues = () => {
       });
     }
   };
-};
+})();
 
-const subscriptions = () => {
+const subscriptions = (() => {
   let subs = {};
 
   /**
@@ -218,7 +220,7 @@ const subscriptions = () => {
     unsubscribe: unsubscribe,
     removeClient: removeClient
   };
-};
+})();
 
 /**
  * Destroy client connection

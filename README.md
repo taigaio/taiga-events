@@ -8,15 +8,23 @@ The Taiga websocket server.
 
 > _NOTE:_ You should use node >= 10.0.0
 
+```shell script
+npm install
+```
+
+## Configuration
+
+There should be an `.env` file with the configuration. An example can be found at `.env.example`.
+
 ## How to run
 
-Development
+**Development**
 
 ```shell script
 npm run start:dev
 ```
 
-Production
+**Production**
 
 ```shell script
 npm run start:production

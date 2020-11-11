@@ -8,6 +8,8 @@ fi
 envsubst < /taiga-events/docker/env.template \
          > /taiga-events/.env
 
+chown -R taiga:taiga /taiga-events
+
 # Start node process
 echo Starting Taiga events
-exec npm run start:production
+exec su-exec taiga npm run start:production

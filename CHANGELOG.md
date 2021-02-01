@@ -1,6 +1,6 @@
 # Changelog
 
-## 6.0.0
+## 6.0.0 (2020-02-02)
 
 Major update: rewrited coffeescript to pure JS ES6.
 

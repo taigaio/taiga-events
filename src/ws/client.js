@@ -68,29 +68,33 @@ class Client {
    * @return {null|{sessionId}|{token}|*}
    */
   handleMessage(message) {
-    logger.info(`New message: ${message}`);
     let msg;
     try {
       msg = JSON.parse(message);
     } catch {
+      logger.error(`Error parsing message: ${message}`);
       return null;
     }
 
     if (msg.cmd === "ping") {
+      logger.debug(`PING: ${message}`);
       return this.sendPong();
-    } else if (msg.cmd === "auth" && msg.data) {
-      return this.authUser(msg.data);
-    } else if (msg.cmd === "subscribe" && msg.routing_key) {
-      if (this.auth && msg.routing_key.indexOf("live_notifications") === 0) {
-        const userId = getUserId(this.auth.token);
-        if (userId) {
-          return this.addSubscription(`live_notifications.${userId}`);
+    } else {
+      logger.info(`${msg.cmd}: ${message}`);
+      if (msg.cmd === "auth" && msg.data) {
+        return this.authUser(msg.data);
+      } else if (msg.cmd === "subscribe" && msg.routing_key) {
+        if (this.auth && msg.routing_key.indexOf("live_notifications") === 0) {
+          const userId = getUserId(this.auth.token);
+          if (userId) {
+            return this.addSubscription(`live_notifications.${userId}`);
+          }
+        } else {
+          return this.addSubscription(msg.routing_key);
         }
-      } else {
-        return this.addSubscription(msg.routing_key);
+      } else if (msg.cmd === "unsubscribe" && msg.routing_key) {
+        return this.removeSubscription(msg.routing_key);
       }
-    } else if (msg.cmd === "unsubscribe" && msg.routing_key) {
-      return this.removeSubscription(msg.routing_key);
     }
   }
 
@@ -169,11 +173,11 @@ const createClient = ws => {
   const client = new Client(ws);
   clients[client.id] = client;
 
-  logger.info(`New WS connection: ${client.id}`);
+  logger.info(`ws-connection-open: ${client.id}`);
 
   return client.ws.on("close", function() {
     this.close();
-    logger.info(`WS Connection close: ${client.id}`);
+    logger.info(`ws-connection-close: ${client.id}`);
     return delete clients[this.id];
   });
 };

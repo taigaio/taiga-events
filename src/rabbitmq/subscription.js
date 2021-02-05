@@ -18,6 +18,7 @@
  */
 
 const { subscribe, unsubscribe } = require("./client");
+const { logger } = require("../logger");
 
 /**
  * Events subscriptions
@@ -54,7 +55,8 @@ class Subscription {
     try {
       return this.ws.send(clientMsgStr);
     } catch (error) {
-      return console.error(`Error: ${error}`);
+      logger.error(`error sending: ${clientMsgStr}`);
+      return logger.error(`error: ${error}`);
     }
   }
 

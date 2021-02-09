@@ -32,11 +32,11 @@ const webSocketServerProbe = () =>
     );
 
     client.on("open", function() {
-      this.close();
+      client.close();
       resolve("WebSocket server is alive");
     });
 
-    client.on("error", () => {
+    client.on("error", function() {
       reject("WebSocket server is down");
     });
   });

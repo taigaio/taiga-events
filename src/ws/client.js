@@ -172,13 +172,12 @@ class Client {
 const createClient = ws => {
   const client = new Client(ws);
   clients[client.id] = client;
-
   logger.info(`ws-connection-open: ${client.id}`);
 
   return client.ws.on("close", function() {
-    this.close();
+    client.close();
     logger.info(`ws-connection-close: ${client.id}`);
-    return delete clients[this.id];
+    return delete clients[client.id];
   });
 };
 

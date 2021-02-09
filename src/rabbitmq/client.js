@@ -18,6 +18,7 @@
  */
 
 const { connect } = require("amqplib");
+const { logger } = require("../logger");
 
 const amqpUrl = process.env.RABBITMQ_URL;
 
@@ -82,6 +83,7 @@ const channels = (() => {
    */
   const removeClient = client_id => {
     return get(client_id).then(channel => {
+      logger.debug(`rabbitmq-channel-close client_id: ${client_id}`)
       channel.close();
       return delete chs[client_id];
     });
@@ -100,6 +102,7 @@ const channels = (() => {
       if (!chs[client_id]) {
         return getConnection()
           .then(connection => {
+            logger.debug(`rabbitmq-channel-create client_id: ${client_id}`)
             return connection.createChannel();
           })
           .then(channel => {
@@ -174,7 +177,7 @@ const subscriptions = (() => {
   const bindAndSubscribe = (channel, queue, routing_key, cb) => {
     channel.bindQueue(queue, config.exchange.name, routing_key);
     return channel.consume(queue, cb, {
-      noAck: true
+      noAck: config.channel.noAck
     });
   };
 

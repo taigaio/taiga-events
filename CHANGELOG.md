@@ -1,11 +1,18 @@
 # Changelog
 
 
-## 6.0.1 (2020-02-07)
+## 6.0.2 (2020-02-09)
 
-### Misc
+### misc
 
-Improve logger messages.
+Fixed a critical bug related to channels not closed after WS connections ended.
+
+
+## 6.0.1 (2020-02-08)
+
+### misc
+
+improve logger messages.
 
 
 ## 6.0.0 (2020-02-02)

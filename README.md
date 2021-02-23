@@ -1,7 +1,3 @@
-# IMPORTANT NOTICE ABOUT UPCOMING TAIGA 6 RELEASE
-
-Taiga6 is just around the corner. Please read [our pre-announcement](https://blog.taiga.io/taiga6-pre-announcement.html) so you know what's most important about our best release ever.
-
 # Taiga events
 
 [![Managed with Taiga.io](https://img.shields.io/badge/managed%20with-TAIGA.io-709f14.svg)](https://tree.taiga.io/project/taiga/ "Managed with Taiga.io")

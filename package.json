@@ -13,7 +13,7 @@
     "Kaleidos OpenSource SL",
     "Alivekeep"
   ],
-  license": "MPL-2",
+  "license": "MPL-2",
   "repository": {
     "type": "git",
     "url": "https://github.com/taigaio/taiga-events"

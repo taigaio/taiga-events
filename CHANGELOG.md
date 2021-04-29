@@ -1,7 +1,9 @@
 # Changelog
 
 
-## 6.0.2 (2020-02-09)
+## 6.1.0 (unreleased)
+
+- Update github templates
 
 ### misc
 

@@ -3,7 +3,8 @@
 
 ## 6.2.0 (unreleased)
 
-- ...
+- Upgrade dependencies.
+
 
 ## 6.1.1 (2021-05-18)
 

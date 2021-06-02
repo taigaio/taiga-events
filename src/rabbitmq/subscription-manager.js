@@ -29,9 +29,10 @@ class SubscriptionManager {
   /**
    * Add new subscription
    * @param routing_key Router Id
+   * @param options
    * @return {*}
    */
-  add(routing_key) {
+  add(routing_key, options) {
     if (!this.subscriptions[routing_key]) {
       this.subscriptions[routing_key] = {};
     } else {
@@ -41,7 +42,8 @@ class SubscriptionManager {
       this.client_id,
       this.auth,
       this.ws,
-      routing_key
+      routing_key,
+      options
     );
     return this.subscriptions[routing_key].start();
   }

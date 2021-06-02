@@ -79,7 +79,7 @@ class Client {
             return this.addSubscription(`live_notifications.${userId}`);
           }
         } else {
-          return this.addSubscription(msg.routing_key);
+          return this.addSubscription(msg.routing_key, msg.options);
         }
       } else if (msg.cmd === "unsubscribe" && msg.routing_key) {
         return this.removeSubscription(msg.routing_key);
@@ -101,9 +101,10 @@ class Client {
   /**
    * Register client
    * @param routing_key
+   * @param options
    * @return {*}
    */
-  addSubscription(routing_key) {
+  addSubscription(routing_key, options) {
     if (this.auth) {
       if (!this.subscriptionManager) {
         this.subscriptionManager = new SubscriptionManager(
@@ -112,7 +113,7 @@ class Client {
           this.ws
         );
       }
-      return this.subscriptionManager.add(routing_key);
+      return this.subscriptionManager.add(routing_key, options);
     }
   }
 

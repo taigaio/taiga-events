@@ -19,12 +19,14 @@ class Subscription {
    * @param auth        Auth object
    * @param ws          WS object
    * @param routing_key Router Id
+   * @param options     { selfNotification: bool }
    */
-  constructor(client_id, auth, ws, routing_key) {
+  constructor(client_id, auth, ws, routing_key, options) {
     this.client_id = client_id;
     this.auth = auth;
     this.ws = ws;
     this.routing_key = routing_key;
+    this.options = options ? options : {};
   }
 
   /**
@@ -34,7 +36,7 @@ class Subscription {
    */
   handleMessage(msg) {
     const content = JSON.parse(msg.content.toString());
-    if (content.session_id === this.auth.sessionId) {
+    if (content.session_id === this.auth.sessionId && !this.options.selfNotification) {
       return;
     }
     const clientMsg = content;

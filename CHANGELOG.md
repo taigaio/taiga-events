@@ -4,7 +4,7 @@
 ## 6.2.0 (unreleased)
 
 - Upgrade dependencies.
-
+- Allow self-notification.
 
 ## 6.1.1 (2021-05-18)
 

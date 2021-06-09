@@ -1,7 +1,11 @@
 # Changelog
 
 
-## 6.2.0 (unreleased)
+## 6.3.0 (unreleased)
+
+- ...
+
+## 6.2.0 (2021-06-09)
 
 - Upgrade dependencies.
 - Allow self-notification.

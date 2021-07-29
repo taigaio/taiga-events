@@ -5,6 +5,10 @@
 
 - ...
 
+## 6.2.3 (2021-07-29)
+
+- Fix an error related to the close connection process.
+
 ## 6.2.2 (2021-07-15)
 
 - Compatible with Taiga 6.2.2

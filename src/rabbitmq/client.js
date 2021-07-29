@@ -71,9 +71,15 @@ const channels = (() => {
    * @return {PromiseLike<boolean> | Promise<boolean>}
    */
   const removeClient = client_id => {
-    delete chs[client_id]
+    if (!chs[client_id]) {
+      return Promise.resolve();
+    }
 
-    return get(client_id).then(channel => {
+    const client = get(client_id);
+
+    delete chs[client_id];
+
+    return client.then(channel => {
       logger.debug(`rabbitmq-channel-close client_id: ${client_id}`)
       channel.close();
       return true;

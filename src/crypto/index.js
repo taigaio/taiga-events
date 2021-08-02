@@ -6,40 +6,38 @@
  * Copyright (c) 2021-present Kaleidos Ventures SL
  */
 
-const { createHash, createHmac } = require("crypto");
-const base64url = require("base64-url");
+const { logger } = require('../logger');
+var jwt = require('jsonwebtoken');
+
 
 const secret = process.env.SECRET;
-const salt = "django.core.signing";
-
-/**
- * Split function
- * @param token
- * @param sep
- * @param maxsplit
- * @return {string[]|*}
- */
-const rsplit = (token, sep, maxsplit) => {
-  const split = token.split(sep);
-  if (maxsplit) {
-    return [split.slice(0, -maxsplit).join(sep)].concat(split.slice(-maxsplit));
-  }
-  return split;
+const options = {
+  algorithm: process.env.ALGORITHM || 'HS256',
+  audience: process.env.AUDIENCE || '',
+  issuer: process.env.ISSUER || '',
+  ignoreExpiration: 'true'
 };
+const userIdClaim = process.env.USER_ID_CLAIM || 'user_id';
+
 
 /**
- * Getting user Id
+ * Getting user Id from a JWT Token
  * @param token
  * @return {*}
  */
 const getUserId = token => {
-  let value = token.split(":")[0];
-  value = JSON.parse(base64url.decode(value));
-  return value != null ? value.user_authentication_id : void 0;
+  try {
+    const payload = jwt.verify(token, secret, options);
+    return payload[userIdClaim];
+  } catch (err) {
+    logger.error(`crypto: ${JSON.stringify(err)}`);
+  }
+  return null;
 };
 
+
 /**
- * Verify function
+ * Verify a JWT token
  * @param token
  * @return {boolean}
  */
@@ -48,19 +46,15 @@ const verify = token => {
     return false;
   }
 
-  const [value, sig] = rsplit(token, ":", 1);
-  const shasum = createHash("sha1");
+  try {
+    const payload = jwt.verify(token, secret, options);
+    return true;
+  } catch (err) {
+    logger.error(`crypto: ${JSON.stringify(err)}`);
+  }
 
-  shasum.update(`${salt}signer${secret}`);
-
-  const hmacKey = shasum.digest();
-  const hmac = createHmac("sha1", hmacKey);
-
-  hmac.setEncoding("base64");
-  hmac.update(value);
-
-  const key = base64url.escape(hmac.digest("base64"));
-  return key === sig;
+  return false;
 };
+
 
 module.exports = { getUserId, verify };

@@ -3,7 +3,7 @@
 
 ## 6.3.0 (unreleased)
 
-- ...
+- New crypto module, compatible with the new auth system (history #tg-4625, issue #tgg-626))
 
 ## 6.2.3 (2021-07-29)
 

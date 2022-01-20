@@ -1,6 +1,6 @@
 {
   "name": "taigaio-events",
-  "version": "6.4.0",
+  "version": "6.5.0",
   "description": "Taiga project management system (events)",
   "main": "./src/index.js",
   "keywords": [

@@ -8,6 +8,8 @@
 
 set -e
 
+cmd="npm run start:production"
+
 if [ "${1#-}" != "${1}" ] || [ -z "$(command -v "${1}")" ]; then
   set -- node "$@"
 fi
@@ -15,8 +17,16 @@ fi
 envsubst < /taiga-events/docker/env.template \
          > /taiga-events/.env
 
-chown -R taiga:taiga /taiga-events
+if [ "$(id -u)" -eq 0 ]; then
+    chown -R taiga:taiga /taiga-events
 
-# Start node process
-echo Starting Taiga events
-exec su-exec taiga npm run start:production
+    # Start node process
+    echo Starting Taiga events
+    # note: no quotes around $cmd to allow it to expand
+    exec su-exec taiga $cmd
+else
+    # Start node process
+    echo Starting Taiga events
+    # note: no quotes around $cmd to allow it to expand
+    exec $cmd
+fi

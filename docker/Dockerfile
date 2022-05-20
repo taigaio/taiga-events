@@ -22,7 +22,8 @@ RUN set -eux; \
     chmod +x docker/entrypoint.sh; \
     addgroup -g 99 -S taiga; \
     adduser -u 99 -S -D -G taiga -H -h /taiga-events -s /bin/sh taiga; \
-    chown -R taiga:taiga /taiga-events
+    chown -R taiga:0 /taiga-events; \
+    chmod g+rwX /taiga-events
 
 EXPOSE 8888
 ENTRYPOINT ["./docker/entrypoint.sh"]

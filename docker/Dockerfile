@@ -19,7 +19,7 @@ RUN set -eux; \
        gettext \
        su-exec; \
     npm install; \
-    chmod +x docker/entrypoint.sh; \
+    chmod +x docker/entrypoint.sh docker/write.env.sh; \
     addgroup -g 99 -S taiga; \
     adduser -u 99 -S -D -G taiga -H -h /taiga-events -s /bin/sh taiga; \
     chown -R taiga:taiga /taiga-events

@@ -2,7 +2,8 @@
 
 # 6.6.0 (unreleased)
 
-- ...
+- Upgrade docker base image to node:16-alpine
+- Compatible with Taiga 6.6.0
 
 # 6.5.0 (2022-01-24)
 

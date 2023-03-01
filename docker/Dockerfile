@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2021-present Kaleidos Ventures SL
 
-FROM node:12-alpine
+FROM node:16-alpine
 LABEL maintainer="support@taiga.io"
 
 COPY . /taiga-events

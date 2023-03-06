@@ -1,6 +1,10 @@
 # Changelog
 
-# 6.6.0 (unreleased)
+# 6.6.1 (unreleased)
+
+- ...
+
+# 6.6.0 (2023-03-06)
 
 - Upgrade docker base image to node:16-alpine
 - Compatible with Taiga 6.6.0

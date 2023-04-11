@@ -1,8 +1,12 @@
 # Changelog
 
-# 6.6.1 (unreleased)
+# 6.7.0 (unreleased)
 
 - ...
+
+# 6.6.1 (2023-04-11)
+
+- Allow to define the logging level in the dotenv file
 
 # 6.6.0 (2023-03-06)
 

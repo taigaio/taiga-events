@@ -41,7 +41,7 @@ wss.on("connection", ws => {
  * WS server error listener
  */
 wss.on("error", error => {
-  logger.warn(error.message);
+  logger.error(error.message);
 });
 
 const endposcopeConfig = {
@@ -70,11 +70,11 @@ createServer(httpEndoscope(endposcopeConfig)).listen(
  * Default NodeJS Uncaught Exception and Unhandled Rejection handlers
  */
 process.on("uncaughtException", err => {
-  logger.warn(`Uncaught Exception: "${err}"`);
+  logger.error(`Uncaught Exception: "${err}"`);
   process.exit(1);
 });
 
 process.on("unhandledRejection", err => {
-  logger.warn(`Unhandled Rejection: "${err}"`);
+  logger.error(`Unhandled Rejection: "${err}"`);
   process.exit(1);
 });

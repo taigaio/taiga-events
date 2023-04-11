@@ -19,7 +19,7 @@ let formatObject;
 if (process.env.NODE_ENV === "production") {
   transportsList.push(
     new transports.Console({
-      level: "info",
+      level: process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : "info",
       handleExceptions: true,
       json: true
     })
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   transportsList.push(
     new transports.Console({
-      level: "silly",
+      level: process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : "silly",
       handleExceptions: true,
       json: false
     })

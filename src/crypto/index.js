@@ -47,7 +47,7 @@ const verify = token => {
   }
 
   try {
-    const payload = jwt.verify(token, secret, options);
+    jwt.verify(token, secret, options);
     return true;
   } catch (err) {
     logger.error(`crypto: ${JSON.stringify(err)}`);

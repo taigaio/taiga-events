@@ -2,7 +2,7 @@
 
 # 6.7.0 (unreleased)
 
-- ...
+- Upgrade dotenv.
 
 # 6.6.1 (2023-04-11)
 

@@ -1,6 +1,10 @@
 # Changelog
 
-# 6.7.0 (unreleased)
+# 6.7.1 (unreleased)
+
+- ...
+
+# 6.7.0 (2023-06-12)
 
 - Upgrade dotenv.
 

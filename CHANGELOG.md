@@ -1,8 +1,13 @@
 # Changelog
 
-# 6.7.1 (unreleased)
+# 6.8.1 (unreleased)
 
 - ...
+
+# 6.8.0 (2024-04-03)
+
+- Changed the namespace of the repositories, from kaleidos-ventures to taigaio
+- Inmproved RabbitMQ host configuration for Taiga events and asynchrous tasks (thanks [@iriseden](https://github.com/iriseden))
 
 # 6.7.0 (2023-06-12)
 

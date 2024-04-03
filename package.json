@@ -16,7 +16,7 @@
   "license": "MPL-2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kaleidos-ventures/taiga-events"
+    "url": "https://github.com/taigaio/taiga-events"
   },
   "scripts": {
     "start:dev": "NODE_ENV=development nodemon ./src/index.js",

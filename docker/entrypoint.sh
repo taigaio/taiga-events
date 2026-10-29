@@ -22,6 +22,7 @@ envsubst < /taiga-events/docker/env.template \
 
 chown -R taiga:taiga /taiga-events
 
-# Start node process
+# Start node process (same as `npm run start:production`; npm is not in the image)
 echo Starting Taiga events
-exec su-exec taiga npm run start:production
+export NODE_ENV=production
+exec su-exec taiga node ./src/index.js

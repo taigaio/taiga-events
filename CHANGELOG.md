@@ -2,7 +2,8 @@
 
 # 6.11.0 (unreleased)
 
-- ...
+- fix: update the dependencies with known vulnerabilities; amqplib 0.10 also negotiates the frame size that RabbitMQ 4.1 and later require
+- fix: docker image on node 24 with up to date Alpine packages, and without npm at runtime
 
 # 6.10.0 (2026-04-20)
 - Compatible with Taiga 6.10.0

@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2021-present Kaleidos INC
 
-FROM node:16-alpine
+FROM node:24-alpine
 LABEL maintainer="support@taiga.io"
 
 COPY . /taiga-events
@@ -15,10 +15,14 @@ WORKDIR /taiga-events
 
 RUN set -eux; \
     apk update; \
+    apk upgrade --no-cache; \
     apk add --no-cache \
        gettext \
        su-exec; \
     npm install; \
+    # npm is only needed to install the dependencies: remove it, and the packages it bundles, from the image
+    npm cache clean --force; \
+    rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx; \
     chmod +x docker/entrypoint.sh; \
     addgroup -g 99 -S taiga; \
     adduser -u 99 -S -D -G taiga -H -h /taiga-events -s /bin/sh taiga; \
